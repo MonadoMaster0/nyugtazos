@@ -42,7 +42,7 @@ for ind, file in enumerate(fileList):
     graphs.append([x_plot,y_plot])
 
 
-r = random.randint(0,len(processed))
+r = random.randint(0,len(processed)-1) # kiválaszt egy random képet amit kiplottol
 
 
 print(data)
