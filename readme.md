@@ -1,0 +1,1 @@
+SCANNED mappában lévő fájlok pre-processzálása tesseract OCR engine-hez.
