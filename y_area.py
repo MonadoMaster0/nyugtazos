@@ -11,6 +11,15 @@ processed = []
 graphs = []
 raw = []
 
+ss = []
+space = ''
+header = fileList.copy()
+for file in fileList:
+    header.append(file)
+    header.append('')
+
+
+
 for ind, file in enumerate(fileList):
     pair = {}
     img = cv2.imread(os.path.join('scanned', file))
@@ -40,12 +49,16 @@ for ind, file in enumerate(fileList):
         if h*w > 10000:
             print(f'{h*w*100/(img.shape[0]*img.shape[1])}\t{w*h}\t{x}\t{y}') # Fejleszői cucc, a területszűrésnél a kép amit használtam, ott 10000 területű boxokat generált, amikeben már nem volt értékes tartalom
     graphs.append([x_plot,y_plot])
+    ss.append(pandas.DataFrame(list(zip(x_plot,y_plot))))
+    
 
+
+curr = pandas.concat(ss, axis=1)
+curr.to_csv('tada.csv', sep=';', decimal=',')
+print(curr)
+    
 
 r = random.randint(0,len(processed)-1) # kiválaszt egy random képet amit kiplottol
-
-
-print(data)
 
 plt.subplot(221)
 plt.plot(graphs[r][0],graphs[r][1])
@@ -54,5 +67,4 @@ plt.imshow(processed[r], 'gray')
 plt.subplot(223)
 plt.imshow(raw[r])
 plt.show()
-print(raw[r].shape)
         
