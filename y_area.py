@@ -14,9 +14,8 @@ raw = []
 ss = []
 space = ''
 header = fileList.copy()
-for file in fileList:
-    header.append(file)
-    header.append('')
+spaces = ['' for _ in header]
+header = list(zip(header, spaces))
 
 
 
@@ -67,4 +66,3 @@ plt.imshow(processed[r], 'gray')
 plt.subplot(223)
 plt.imshow(raw[r])
 plt.show()
-        
